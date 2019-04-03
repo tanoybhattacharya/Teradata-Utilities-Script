@@ -1,0 +1,11 @@
+.logon 192.168.128.128/dbc,dbc;
+database financial;
+
+select Count(*) from  customer_aug18;
+
+
+.IF ACTIVITYCOUNT=0 THEN .QUIT;
+
+.RUN FILE=C:\Users\SARAVANA\Desktop\Edureka\BTEQ\run.bteq.txt
+  
+.quit;

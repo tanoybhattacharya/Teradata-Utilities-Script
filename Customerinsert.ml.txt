@@ -1,0 +1,35 @@
+.LOGTABLE tpch.CUST_ML_LOG;
+.logon 192.168.128.128/dbc,dbc;
+
+.BEGIN MLOAD TABLES tpch.CUSTOMER_NEW_ML;
+.LAYOUT CUSTOMER;
+.FIELD in_cust_id * VARCHAR(30);
+.FIELD in_income * VARCHAR(30);
+.FIELD in_age * VARCHAR(30);
+.FIELD in_years_with_bank * VARCHAR(30);
+.FIELD in_nbr_children * VARCHAR(30);
+.FIELD in_gender * VARCHAR(30);
+.FIELD in_marital_status * VARCHAR(30);
+
+.DML LABEL INSTCUST;
+INSERT INTO tpch.CUSTOMER_NEW_ML
+(CUST_ID,INCOME,AGE,YEARS_WITH_BANK,NBR_CHILDREN,GENDER,MARITAL_STATUS)
+VALUES
+(:in_cust_id,
+ :in_income,
+ :in_age,
+ :in_years_with_bank,
+ :in_nbr_children,
+ :in_gender,
+ :in_marital_status);
+
+
+.IMPORT INFILE C:\Users\SARAVANA\Desktop\Edureka\CustomerMLOAD.txt
+FORMAT VARTEXT'|'
+LAYOUT CUSTOMER APPLY INSTCUST;
+.END MLOAD;
+LOGOFF;
+
+
+
+ 

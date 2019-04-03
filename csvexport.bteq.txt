@@ -1,0 +1,8 @@
+.logon 192.168.128.128/dbc,dbc;
+DATABASE financial;
+
+.EXPORT FILE = C:\Users\SARAVANA\Desktop\Edureka\csvexportdec09.csv;
+select cast(cust_id as varchar(20))||','||cast(income as varchar(20))  from customer;
+
+.EXPORT.RESET;
+logoff;

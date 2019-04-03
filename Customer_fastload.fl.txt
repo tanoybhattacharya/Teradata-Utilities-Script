@@ -1,0 +1,36 @@
+.logon 192.168.128.128/dbc,dbc;
+DATABASE FINANCIAL;
+
+BEGIN LOADING FINANCIAL.customer_new
+ERRORFILES CUSTOMER_2018_ET,CUSTOMER_2018_UV
+CHECKPOINT 100;
+
+SET RECORD VARTEXT '|';
+
+DEFINE in_cust_id   	(varchar(20)),                    
+in_income       	(varchar(30))    ,               
+in_age                	(varchar(10)) ,            
+in_years_with_bank      (varchar(20)),           
+in_nbr_children       	(varchar(20))  ,           
+in_gender               (varchar(10))   ,      
+in_marital_status       (varchar(10))
+FILE=C:\Users\SARAVANA\Desktop\Edureka\Customer.txt;
+
+insert into     FINANCIAL.customer_new
+VALUES
+(     
+:in_cust_id,
+:in_income,
+:in_age,
+:in_years_with_bank,
+:in_nbr_children,
+:in_gender,
+:in_marital_status)  ;
+
+END LOADING;
+LOGOFF;     
+
+
+
+
+

@@ -1,0 +1,9 @@
+.logon 192.168.128.128/dbc,dbc;
+database financial;
+
+.export report file=C:\Users\SARAVANA\Desktop\Edureka\Customer_export_dec09.txt;
+.set separator '|';
+select * from customer;
+.export reset;
+
+.quit;

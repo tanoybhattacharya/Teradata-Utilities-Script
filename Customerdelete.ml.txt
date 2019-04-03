@@ -1,0 +1,13 @@
+.LOGTABLE financial.CUST_ML_LOG;
+.logon 192.168.128.128/dbc,dbc;
+
+.BEGIN DELETE MLOAD TABLES  financial.customer_new;
+ 
+DELETE FROM  financial.customer_new;
+ 
+.END MLOAD;
+.LOGOFF;
+  
+ 
+ 
+  

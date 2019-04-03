@@ -1,0 +1,12 @@
+.logtable financial.log_cust_fexp;
+.logon 192.168.128.128/dbc,dbc;
+
+.BEGIN EXPORT SESSIONS 2;
+
+.EXPORT OUTFILE C:\Users\SARAVANA\Desktop\Edureka\20170107\exportdec09.txt
+MODE RECORD FORMAT TEXT;
+select cast(cust_id as  char(20))||'|'||cast(income as  char(20)) 
+ from financial.customer;
+.END EXPORT;
+
+.LOGOFF;

@@ -1,0 +1,28 @@
+.logtable financial.log_cust_fexp;
+.logon 192.168.128.128/dbc,dbc;
+
+.BEGIN EXPORT SESSIONS 2;
+.EXPORT OUTFILE C:\Users\SARAVANA\Desktop\Edureka\20170107\export_malesdec09.txt
+MODE RECORD FORMAT TEXT;
+select cust_id  (CHAR(10)),
+income (CHAR(10)),
+age (CHAR(5)),
+gender (CHAR(5))
+from financial.customer   where gender = 'M';
+
+.END EXPORT;
+
+
+
+.BEGIN EXPORT SESSIONS 2;
+.EXPORT OUTFILE C:\Users\SARAVANA\Desktop\Edureka\20170107\export_femaledec09.txt
+MODE RECORD FORMAT TEXT;
+select distinct  cast('custid  ||  income' as char(50)) from financial.customer;
+select cust_id  (CHAR(10)),
+income (CHAR(10)),
+age (CHAR(5)),
+gender (CHAR(5))
+from financial.customer where gender = 'F';
+
+.END EXPORT;
+.LOGOFF;

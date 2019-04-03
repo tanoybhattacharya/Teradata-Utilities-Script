@@ -1,0 +1,29 @@
+.logon 192.168.128.128/dbc,dbc;
+database financial;
+
+delete from customer_aug18;
+
+
+.IF ERRORCODE=0 THEN .GOTO INSERT_DEMO;
+
+
+CREATE MULTISET TABLE FINANCIAL.customer_aug18 ,NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL,
+     CHECKSUM = DEFAULT,
+     DEFAULT MERGEBLOCKRATIO
+     (
+      cust_id INTEGER NOT NULL,
+      income INTEGER,
+      age SMALLINT,
+      years_with_bank SMALLINT,
+      nbr_children SMALLINT,
+      gender CHAR(1) CHARACTER SET LATIN NOT CASESPECIFIC,
+      marital_status CHAR(1) CHARACTER SET LATIN NOT CASESPECIFIC)
+ PRIMARY INDEX ( cust_id );
+
+.LABEL INSERT_DEMO
+insert into  customer_aug18  select * from customer;
+ 
+
+.quit;
